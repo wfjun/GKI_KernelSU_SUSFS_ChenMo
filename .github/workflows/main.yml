@@ -33,6 +33,7 @@ on:
         options:
           - All
           - Test Build
+          - Android12-4.14
           - Android12-5.10
           - Android13-5.10
           - Android13-5.15
@@ -49,6 +50,11 @@ jobs:
     uses: ./.github/workflows/test-build.yml
     secrets: inherit
 
+  build-a12-4-14:
+    if: (inputs.build_selection == 'All' || inputs.build_selection == 'Android12-4.14')
+    uses: ./.github/workflows/kernel-a12-4-14.yml
+    secrets: inherit
+    
   build-a12-5-10:
     if: (inputs.build_selection == 'All' || inputs.build_selection == 'Android12-5.10')
     uses: ./.github/workflows/kernel-a12-5-10.yml
@@ -92,6 +98,7 @@ jobs:
     runs-on: ubuntu-latest
     if: inputs.release_type != 'Actions'
     needs:
+      - build-a12-4-14
       - build-a12-5-10
       - build-a13-5-10
       - build-a13-5-15
