@@ -83,6 +83,10 @@ download_one() {
 }
 
 # All kernel combinations from test build workflow
+# Android 12 - 4.14
+download_one "android12" "4.14" "2021-04"  # 最旧版本
+download_one "android12" "4.14" "lts"      # LTS版本
+
 # Android 12 - 5.10
 download_one "android12" "5.10" "2021-08"  # oldest (sub_level: 43)
 download_one "android12" "5.10" "lts"      # LTS
